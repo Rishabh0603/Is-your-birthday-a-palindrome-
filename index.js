@@ -19,21 +19,18 @@ function isPalindrome(str){
 function convert_date_in_string(date){
     dateStr = {day:'', month:'', year:''}
     if(date.day<10){
-        dateStr.day = "0"+date.day;
+        dateStr.day = '0'+date.day;
     }
     else
     dateStr.day = date.day.toString();
     if(date.month<10){
-        dateStr.month = "0"+date.month;
+        dateStr.month = '0'+date.month;
     }
     else
     dateStr.month = date.month.toString();
     dateStr.year = date.year.toString();
     return dateStr;
     }
-   
-   
-
     function allDateFormat(date){
       var dateStr = convert_date_in_string(date);
       var ddmmyyyy = dateStr.day + dateStr.month + dateStr.year;
@@ -57,7 +54,6 @@ function convert_date_in_string(date){
         }
         return flag;
         }
-
         function check_leap_year(year){
             if(year % 400 === 0){
                 return true;
@@ -100,15 +96,45 @@ function convert_date_in_string(date){
                 year++;
                 month = 1;
             }}
-            return {day:'day',
-                     month:'month',
-                      year:'year'};
+            return {day:day,
+                     month:month,
+                      year:year};
         }
-        var date={day:9,
-            month:2,
-             year:2020};
-             
-      
+        function nextPalindrome(date){
+            
+            var counter=0;
+            var nextDate = next_date(date);
+            while(1){
+                counter++;
+                if(checkPalindrome(nextDate))
+                break;
+               nextDate= next_date(nextDate);
+            }
+            return [counter, nextDate];
+        }
+        
+             function getinput(){
+                var bdayStr = user_input.value;
+                if(bdayStr !== ''){
+                var listOfDate =  bdayStr.split('-');
+                 var date={
+                    day: Number(listOfDate[2]),
+                    month: Number(listOfDate[1]),
+                    year:  Number(listOfDate[0])
+                 };
+                 var CheckforPalindrome = checkPalindrome(date);
+                 if(CheckforPalindrome)
+                 output.innerText = 'Yay! your birthday is a palindrome';
+                 else{
+                 var [counter, nextDate] = nextPalindrome(date);
+                 output.innerText =`The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year} you missed it by, ${counter} days`;
+                }
+             }
+             else
+             output.innerText="please enter a valid date"
+            }
+       
+      button.addEventListener("click",getinput);
 
 
 
