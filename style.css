@@ -1,0 +1,22 @@
+body{
+    background-color: lightgreen;
+}
+div{
+   text-align:center;
+   font-size:larger;  
+   margin-top:1rem;
+}
+input{
+    padding:1rem;
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+border-radius:1rem;
+    
+}
+button{
+    border-radius:2rem;
+    padding:1rem;
+    color:blueviolet;
+    background-color:azure;
+}
+
